@@ -1,18 +1,28 @@
-#ifndef OBJECT_H 
-#define OBJECT_H 
-#include "core_object.h"
+#ifndef OBJECT
+#define OBJECT
+#include "core_objects.h"
 
+typedef enum {
+    Metadata = 1
+}ExtensionType;
 
-// Definition of PyTypeObject
-typedef struct _typeobject {
-    PyVarObject obv_base;
-    const char* tp_name;
-    Py_ssize_t tp_basicsize;
-    Py_ssize_t tp_itemsize;
-} PyTypeObject;
+typedef struct  Node {
+    ExtensionType type ;
+    struct Node* next ;
+}ExtensionNode;
+typedef struct {
+    Py_ssize_t ext_size ;
+    ExtensionNode* extension_start ;
+}Extension;
 
-// Declaration of PyType_Type as an external variable
-extern PyTypeObject PyType_Type;
+#define Extension_HEAD Extension ext_base ;
 
+typedef struct typeobject {
+    Extension_HEAD
+    PyVarobject_HEAD
+    Py_ssize_t tp_basicsize , tp_itemsizes;
+    char* tp_name ;
+}PyTypeObject ;
 
 #endif
+

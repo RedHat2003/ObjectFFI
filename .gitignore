@@ -1,0 +1,9 @@
+build/
+*.o
+*.so
+*.a
+*.d
+*.gch
+.vscode/
+.idea/
+CMakeCache.txt
